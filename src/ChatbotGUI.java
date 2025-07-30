@@ -72,11 +72,11 @@ public class ChatbotGUI extends JFrame {
             BorderFactory.createEmptyBorder(5, 10, 5, 10)
         ));
         
-        // Create buttons with modern styling
-        sendButton = createStyledButton("Send", new Color(0, 123, 255));
-        trainButton = createStyledButton("Train Bot", new Color(40, 167, 69));
-        statsButton = createStyledButton("Statistics", new Color(255, 193, 7));
-        clearButton = createStyledButton("Clear Chat", new Color(220, 53, 69));
+        // Create buttons with modern styling and better contrast
+        sendButton = createStyledButton("Send", new Color(41, 128, 185));
+        trainButton = createStyledButton("Train Bot", new Color(46, 204, 113));
+        statsButton = createStyledButton("Statistics", new Color(241, 196, 15));
+        clearButton = createStyledButton("Clear Chat", new Color(231, 76, 60));
         
         // Create control panel
         controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
@@ -91,12 +91,20 @@ public class ChatbotGUI extends JFrame {
     
     private JButton createStyledButton(String text, Color backgroundColor) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        button.setFont(new Font("Segoe UI", Font.BOLD, 13));
         button.setBackground(backgroundColor);
-        button.setForeground(Color.WHITE);
+        
+        // Use black text for all buttons for better visibility
+        button.setForeground(new Color(0, 0, 0));
+        
         button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
+        button.setBorder(BorderFactory.createEmptyBorder(10, 18, 10, 18));
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        // Ensure button is opaque for better visibility
+        button.setOpaque(true);
+        button.setContentAreaFilled(true);
+        
         return button;
     }
     
@@ -256,8 +264,8 @@ public class ChatbotGUI extends JFrame {
         
         // Buttons
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        JButton trainButton = new JButton("Train");
-        JButton cancelButton = new JButton("Cancel");
+        JButton trainButton = createStyledButton("Train", new Color(46, 204, 113));
+        JButton cancelButton = createStyledButton("Cancel", new Color(149, 165, 166));
         
         trainButton.addActionListener(e -> {
             String question = questionField.getText().trim();
@@ -294,7 +302,7 @@ public class ChatbotGUI extends JFrame {
         JScrollPane statsScroll = new JScrollPane(statsArea);
         statsDialog.add(statsScroll, BorderLayout.CENTER);
         
-        JButton closeButton = new JButton("Close");
+        JButton closeButton = createStyledButton("Close", new Color(149, 165, 166));
         closeButton.addActionListener(e -> statsDialog.dispose());
         
         JPanel buttonPanel = new JPanel();
